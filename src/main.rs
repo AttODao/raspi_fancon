@@ -13,7 +13,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 
   let env = Environment::new()?;
 
-  run(env)?;
+  if let Err(err) = run(env) {
+    println!("{}", err);
+  }
 
   Ok(())
 }
