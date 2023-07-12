@@ -79,6 +79,7 @@ pub fn run(env: Environment) -> Result<(), Box<dyn Error>> {
 fn get_temp(filename: &str) -> Result<u32, Box<dyn Error>> {
   let mut f = File::open(filename)?;
   let mut temp = String::new();
-  f.read_to_string(&mut temp)?;
+  f.read_to_string(&mut temp)
+    .map_err(|_| "couldn't get temp")?;
   Ok(temp.trim().parse::<u32>()? / 1000)
 }
