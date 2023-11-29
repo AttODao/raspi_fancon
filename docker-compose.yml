@@ -1,0 +1,18 @@
+version: '3'
+services:
+  raspi_fancon:
+    container_name: raspi_fancon
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    privileged: true
+    devices:
+      - /dev/gpiomem
+    environment:
+      - TEMPERATURE_FILE=/sys/class/thermal/thermal_zone0/temp
+      - FAN_PIN=
+      - FAN_ON_TEMP=
+      - FAN_OFF_TEMP=
+      - CHECK_TEMP_INTERVAL=
+      - RUST_LOG=info
